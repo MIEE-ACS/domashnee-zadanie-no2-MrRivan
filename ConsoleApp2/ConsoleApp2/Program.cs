@@ -23,11 +23,11 @@ namespace ConsoleApp2
                         Console.WriteLine("Обнаружен некорректный ввод! Пожалуйста, повторите ввод.\n");
                     }
                 }
-                if (number < -7 || number > 3)
+                if (number < 0 || number > 2)
                 {
                     Console.WriteLine("R не попало в диапозон! Пожалуйста, повторите ввод.\n");
                 }
-            } while ((beacon == false) || (number < -7 || number > 3));
+            } while ((beacon == false) || (number < 0 || number > 2));
             return number;
         }
         static double segment1(double x)
