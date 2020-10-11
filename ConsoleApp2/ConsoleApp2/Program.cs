@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Reflection.Metadata;
+using System.Xml.Schema;
 
 namespace ConsoleApp2
 {
@@ -52,14 +53,23 @@ namespace ConsoleApp2
             }
             else
             {
-                if (-x < Math.Abs(Math.Abs(a) - R))
+                if (R == 0 && x == -2)
                 {
-                    Console.WriteLine("Функция не определена");
-                    y = -100.0;
+                   return a;
                 }
                 else
-                {
-                    y = -Math.Sqrt(R * R - (x - a) * (x - a)) - b;
+                 {
+
+                    if (-x < Math.Abs(Math.Abs(a) - R))
+                    {
+                        Console.WriteLine("Функция не определена");
+                        y = -100.0;
+                    }
+                    else
+                    {
+                        y = -Math.Sqrt(R * R - (x - a) * (x - a)) - b;
+                    }
+                    
                 }
             }
             return y;
@@ -76,14 +86,21 @@ namespace ConsoleApp2
             }
             else
             {
-                if (x > Math.Abs(R - a))
+                if (R == 0 && x == 0)
                 {
-                    Console.WriteLine("Функция не определена");
-                    y = -100.0;
+                    return 0.0;
                 }
                 else
                 {
-                    y = Math.Sqrt(R * R - (x - a) * (x - a)) - b;
+                    if (x > Math.Abs(R - a))
+                    {
+                        Console.WriteLine("Функция не определена");
+                        y = -100.0;
+                    }
+                    else
+                    {
+                        y = Math.Sqrt(R * R - (x - a) * (x - a)) - b;
+                    }
                 }
             }
             return y;
@@ -98,7 +115,7 @@ namespace ConsoleApp2
             double R = Try_read();
             for (double x = -9; x <= 9; x += 0.2)
             {
-
+                x = Math.Round(x, 2);
                 if (x < -7)
                 {
                     Console.WriteLine("Функция не определена");
@@ -107,19 +124,25 @@ namespace ConsoleApp2
                 {
                     Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment1(x));
                 }
-                else if (x < -2)
+                else if(x == -6)
+                {
+                    Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment1(x));
+                    Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment2(x));
+                }
+                else if (x <= -2)
                 {
                     Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment2(x));
                 }
                 else if (x < 0)
                 {
+
                     double check = segment3(x, R);
                     if (check != -100.0)
                     {
                         Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment3(x, R));
                     }
                 }
-                else if (x < 2)
+                else if (x <= 2)
                 {
                     double check = segment4(x, R);
                     if (check != -100.0)
@@ -127,9 +150,13 @@ namespace ConsoleApp2
                         Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment4(x, R));
                     }
                 }
-                else if (x < 0)
+                else if (x <= 3)
                 {
                     Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment5(x));
+                }
+                else if (x > 3)
+                {
+                    Console.WriteLine("Функция не определена");
                 }
             }
         }
