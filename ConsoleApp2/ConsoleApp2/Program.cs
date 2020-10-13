@@ -38,27 +38,28 @@ namespace ConsoleApp2
         }
         static double segment2(double x)
         {
-            double y = x / 4 + 1 / 2;
+            double y = x / 4 + 0.5;
             return y;
         }
         static double segment3(double x, double R)
         {
-            double a = -2;
-            double b = -2;
+            double a = -2.0;
+            double b = 2.0;
             double y;
+
             double pattern = 2.0;
             if (R == pattern)
             {
-                y = Math.Sqrt(R * R - (x - a) * (x - a)) - b;
+                y = -Math.Sqrt(R * R - (x - a) * (x - a)) + b;
             }
             else
             {
                 if (R == 0 && x == -2)
                 {
-                   return a;
+                    return a;
                 }
                 else
-                 {
+                {
 
                     if (-x < Math.Abs(Math.Abs(a) - R))
                     {
@@ -67,9 +68,9 @@ namespace ConsoleApp2
                     }
                     else
                     {
-                        y = -Math.Sqrt(R * R - (x - a) * (x - a)) - b;
+                        y = Math.Sqrt(R * R - (x - a) * (x - a)) - b;
                     }
-                    
+
                 }
             }
             return y;
@@ -112,9 +113,11 @@ namespace ConsoleApp2
         }
         static void Main(string[] args)
         {
+            double x;
             double R = Try_read();
-            for (double x = -9; x <= 9; x += 0.2)
+            for (int i= 0; i <= 50; i ++)
             {
+                x = -7 + 0.2 * i;
                 x = Math.Round(x, 2);
                 if (x < -7)
                 {
@@ -124,7 +127,7 @@ namespace ConsoleApp2
                 {
                     Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment1(x));
                 }
-                else if(x == -6)
+                else if (i == 5)
                 {
                     Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment1(x));
                     Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment2(x));
