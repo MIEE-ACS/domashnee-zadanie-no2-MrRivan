@@ -68,7 +68,7 @@ namespace ConsoleApp2
                     }
                     else
                     {
-                        y = Math.Sqrt(R * R - (x - a) * (x - a)) - b;
+                        y = -Math.Sqrt(R * R - (x - a) * (x - a)) + b;
                     }
 
                 }
